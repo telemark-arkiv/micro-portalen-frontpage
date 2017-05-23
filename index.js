@@ -7,6 +7,7 @@ const urlStatus = require('url-status-code')
 const { parse } = require('url')
 const { send } = require('micro')
 const generateCard = require('./lib/generate-card')
+const generateRows = require('./lib/generate-rows')
 const config = require('./config')
 
 module.exports = async (request, response) => {
@@ -24,8 +25,9 @@ module.exports = async (request, response) => {
     } else {
       const results = await axios(config.shortcutsUrl)
       const shorcuts = results.data.map(shortcut => generateCard(shortcut))
+      const rows = generateRows(shorcuts)
       const index = readFileSync('lib/data/index.html', 'utf-8')
-      const html = index.replace('{{data}}', shorcuts.join(''))
+      const html = index.replace('{{data}}', rows.join(''))
       send(response, 200, html)
     }
   }
