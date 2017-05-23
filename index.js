@@ -18,7 +18,7 @@ module.exports = async (request, response) => {
     send(response, 200, html)
   } else {
     const [front, api] = await Promise.all([urlStatus(config.webUrl), urlStatus(config.apiUrl)])
-    if (front === 201 && api === 200) {
+    if (front === 200 && api === 200) {
       response.writeHead(302, { Location: config.portalenUrl })
       response.end()
     } else {
