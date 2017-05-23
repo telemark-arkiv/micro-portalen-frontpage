@@ -7,7 +7,6 @@ const urlStatus = require('url-status-code')
 const { parse } = require('url')
 const { send } = require('micro')
 const generateCard = require('./lib/generate-card')
-const generateRows = require('./lib/generate-rows')
 const config = require('./config')
 
 module.exports = async (request, response) => {
@@ -19,15 +18,14 @@ module.exports = async (request, response) => {
     send(response, 200, html)
   } else {
     const [front, api] = await Promise.all([urlStatus(config.webUrl), urlStatus(config.apiUrl)])
-    if (front === 200 && api === 200) {
+    if (front === 201 && api === 200) {
       response.writeHead(302, { Location: config.portalenUrl })
       response.end()
     } else {
-      const results = await axios(config.shortcutsUrl)
-      const shorcuts = results.data.map(shortcut => generateCard(shortcut))
-      const rows = generateRows(shorcuts)
+      const results = await axios.get(config.shortcutsUrl)
+      const shortcuts = results.data.map(shortcut => generateCard(shortcut))
       const index = readFileSync('lib/data/index.html', 'utf-8')
-      const html = index.replace('{{data}}', rows.join(''))
+      const html = index.replace('{{data}}', shortcuts.join(''))
       send(response, 200, html)
     }
   }
