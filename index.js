@@ -3,10 +3,10 @@
 const readFileSync = require('fs').readFileSync
 const marked = require('marked')
 const axios = require('axios')
-const urlStatus = require('url-status-code')
 const { parse } = require('url')
 const { send } = require('micro')
 const generateCard = require('./lib/generate-card')
+const urlStatus = require('./lib/url-status-code')
 const config = require('./config')
 
 module.exports = async (request, response) => {
