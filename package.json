@@ -1,7 +1,7 @@
 {
   "name": "micro-portalen-frontpage",
   "description": "Service for checking if Portalen is live",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "license": "MIT",
   "private": true,
   "author": {
@@ -57,6 +57,6 @@
   "dependencies": {
     "axios": "0.16.2",
     "marked": "0.3.6",
-    "micro": "8.0.4"
+    "micro": "8.0.3"
   }
 }
