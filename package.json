@@ -1,7 +1,7 @@
 {
   "name": "micro-portalen-frontpage",
   "description": "Service for checking if Portalen is live",
-  "version": "1.2.10",
+  "version": "1.3.0",
   "license": "MIT",
   "private": true,
   "author": {
@@ -11,7 +11,7 @@
   },
   "main": "index.js",
   "engines": {
-    "node": ">=8.1.2"
+    "node": ">=8.8.1"
   },
   "scripts": {
     "test": "standard && nsp check && ava",
@@ -20,6 +20,7 @@
     "coveralls": "nyc ava && nyc report --reporter=lcov && cat coverage/lcov.info | coveralls",
     "standard-fix": "standard --fix",
     "start": "micro",
+    "dev": "micro-dev",
     "now-deploy": "npm test && now --npm && now alias"
   },
   "keywords": [
@@ -31,12 +32,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/telemark/micro-portalen-frontpage.git"
+    "url": "git+https://github.com/telemark/micro-portalen-frontpage.git"
   },
   "bugs": {
     "url": "https://github.com/telemark/micro-portalen-frontpage/issues"
   },
-  "homepage": "https://github.com/telemark/micro-portalen-frontpage",
+  "homepage": "https://github.com/telemark/micro-portalen-frontpage#readme",
   "now": {
     "alias": [
       "start.portalen.win"
@@ -49,6 +50,7 @@
   "devDependencies": {
     "coveralls": "3.0.0",
     "ava": "0.23.0",
+    "micro-dev": "1.3.0",
     "nsp": "2.8.1",
     "nyc": "11.1.0",
     "standard": "10.0.3",
@@ -56,7 +58,7 @@
   },
   "dependencies": {
     "axios": "0.17.0",
-    "marked": "0.3.6",
+    "markdown-it": "8.4.0",
     "micro": "9.0.0"
   }
 }

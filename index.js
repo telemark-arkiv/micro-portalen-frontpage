@@ -1,7 +1,7 @@
 'use strict'
 
 const readFileSync = require('fs').readFileSync
-const marked = require('marked')
+const md = require('markdown-it')()
 const axios = require('axios')
 const { parse } = require('url')
 const { send } = require('micro')
@@ -14,8 +14,7 @@ module.exports = async (request, response) => {
 
   if (pathname === '/docs') {
     const readme = readFileSync('./README.md', 'utf-8')
-    const html = marked(readme)
-    send(response, 200, html)
+    send(response, 200, md.render(readme))
   } else if (pathname === '/shortcuts') {
     const results = await axios.get(config.shortcutsUrl)
     const shortcuts = results.data.map(shortcut => generateCard(shortcut))
