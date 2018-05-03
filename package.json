@@ -48,7 +48,7 @@
     "type": "npm"
   },
   "devDependencies": {
-    "coveralls": "3.0.0",
+    "coveralls": "3.0.1",
     "ava": "0.25.0",
     "nsp": "3.2.1",
     "micro-dev": "2.2.2",
